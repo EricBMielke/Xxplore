@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Xplore.Models
+namespace Xxplore.Models
 {
     public class ApplicationUser : IdentityUser
     {
