@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Xplore.Models;
+using Xxplore.Models;
 
-namespace Xplore.Data
+namespace Xxplore.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
-using Xplore.Data;
+using Xxplore.Data;
 
 namespace LightsAndBites.Areas.Identity.Pages.Account
 {
