@@ -15,10 +15,10 @@ namespace Xxplore.Data
 
         }
 
-        public DbSet<Xplore.Models.UserProfile> UserProfile { get; set; }
-        public DbSet<Xplore.Models.Country> Countries { get; set; }
-        public DbSet<Xplore.Models.Highlight> Hightlights { get; set; }
-        public DbSet<Xplore.Models.CountryVisited> CountriesVisited { get; set; }
+        public DbSet<Xxplore.Models.UserProfile> UserProfile { get; set; }
+        public DbSet<Xxplore.Models.Country> Countries { get; set; }
+        public DbSet<Xxplore.Models.Highlight> Hightlights { get; set; }
+        public DbSet<Xxplore.Models.CountryVisited> CountriesVisited { get; set; }
 
     }
 }
