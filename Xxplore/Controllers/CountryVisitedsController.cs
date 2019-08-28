@@ -18,6 +18,11 @@ namespace Xxplore.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> WishList(int? id)
+        {
+            var userFound = await _context.UserProfile.FirstOrDefaultAsync(m => m.Id == id);
+            return View(userFound);
+        }
 
         // GET: CountryVisiteds
         public async Task<IActionResult> Index()

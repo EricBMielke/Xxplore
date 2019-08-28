@@ -15,6 +15,12 @@ namespace Xxplore.Controllers
             return View();
         }
 
+        public IActionResult SplashPage()
+        {
+            return View();
+        }
+
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
