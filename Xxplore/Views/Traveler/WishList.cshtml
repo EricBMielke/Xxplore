@@ -1,0 +1,36 @@
+﻿@model Xxplore.Models.UserProfile
+
+@{
+    ViewData["Title"] = "Wish List for " + @Html.DisplayNameFor(model => model.FirstName);
+}
+
+<h2>WishList</h2>
+
+<div>
+    <h4>UserProfile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WishList1)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WishList1)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WishList2)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WishList2)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WishList3)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WishList3)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

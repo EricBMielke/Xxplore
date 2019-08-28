@@ -11,15 +11,17 @@ namespace Xxplore.Models
     {
         [Key]
         public int Id { get; set; }
-        [Display(Name = "Country Id")]
+        [Display(Name = "CountryId")]
         [ForeignKey("CountryId")]
         public int? CountryId { get; set; }
+        [NotMapped]
+        [Display(Name = "Country Name")]
+        public string CountryName { get; set; }
         [Display(Name = "UserId")]
         [ForeignKey("UserId")]
         public int? UserId { get; set; }
         [Display(Name = "Comments")]
-        [NotMapped]
-        public string [] Comments { get; set; }
+        public string Comments { get; set; }
         [Display(Name = "Highlight Of Trip")]
         public string HighlightOfTrip { get; set; }
         [Display(Name = "Rating Of Trip")]
@@ -31,7 +33,7 @@ namespace Xxplore.Models
         [Display(Name = "Photos Of Trip")]
         [NotMapped]
         public string [] PhotosOfTrip { get; set; }
+        [NotMapped]
         public bool hasVisited { get; set; }
-        public bool hasntVisited { get; set; }
     }
 }

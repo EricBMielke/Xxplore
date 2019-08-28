@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Xxplore.Models.CountryVisited>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Trip Log";
 }
 
 <h2>Index</h2>
@@ -13,10 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CountryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                @Html.DisplayNameFor(model => model.CountryName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.HighlightOfTrip)
@@ -30,12 +27,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.EndOfTrip)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.hasVisited)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.hasntVisited)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -43,10 +34,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CountryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserId)
+                @Html.DisplayFor(modelItem => item.CountryName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HighlightOfTrip)
@@ -59,12 +47,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EndOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hasVisited)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.hasntVisited)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
