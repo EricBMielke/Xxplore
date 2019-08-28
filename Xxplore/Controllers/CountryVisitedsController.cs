@@ -1,38 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Xxplore.Data;
 using Xxplore.Models;
-using Xxplore.ViewModels;
 
 namespace Xxplore.Controllers
 {
-    public class UserProfilesController : Controller
+    public class CountryVisitedsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public UserProfilesController(ApplicationDbContext context)
+        public CountryVisitedsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: UserProfiles
+        // GET: CountryVisiteds
         public async Task<IActionResult> Index()
         {
-            return View(await _context.UserProfile.ToListAsync());
+            return View(await _context.CountriesVisited.ToListAsync());
         }
 
-        public async Task<IActionResult> ReturnToCreate()
-        {
-            return View("Create");
-        }
-
-        // GET: UserProfiles/Details/5
+        // GET: CountryVisiteds/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -40,41 +33,39 @@ namespace Xxplore.Controllers
                 return NotFound();
             }
 
-            var userProfile = await _context.UserProfile
+            var countryVisited = await _context.CountriesVisited
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (userProfile == null)
+            if (countryVisited == null)
             {
                 return NotFound();
             }
 
-            return View(userProfile);
+            return View(countryVisited);
         }
 
-        // GET: UserProfiles/Create
+        // GET: CountryVisiteds/Create
         public IActionResult Create()
         {
-            WishList newWishList = new WishList(_context);
-            return View(newWishList);
+            return View();
         }
 
-        // POST: UserProfiles/Create
+        // POST: CountryVisiteds/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,FirstName,LastName,HomeCountry")] UserProfile userProfile)
+        public async Task<IActionResult> Create([Bind("Id,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited,hasntVisited")] CountryVisited countryVisited)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(userProfile);
+                _context.Add(countryVisited);
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index","CountryVisiteds");
-
+                return RedirectToAction(nameof(Index));
             }
-            return View(nameof(Index));
+            return View(countryVisited);
         }
 
-        // GET: UserProfiles/Edit/5
+        // GET: CountryVisiteds/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,22 +73,22 @@ namespace Xxplore.Controllers
                 return NotFound();
             }
 
-            var userProfile = await _context.UserProfile.FindAsync(id);
-            if (userProfile == null)
+            var countryVisited = await _context.CountriesVisited.FindAsync(id);
+            if (countryVisited == null)
             {
                 return NotFound();
             }
-            return View(userProfile);
+            return View(countryVisited);
         }
 
-        // POST: UserProfiles/Edit/5
+        // POST: CountryVisiteds/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,FirstName,LastName,HomeCountry")] UserProfile userProfile)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited,hasntVisited")] CountryVisited countryVisited)
         {
-            if (id != userProfile.Id)
+            if (id != countryVisited.Id)
             {
                 return NotFound();
             }
@@ -106,12 +97,12 @@ namespace Xxplore.Controllers
             {
                 try
                 {
-                    _context.Update(userProfile);
+                    _context.Update(countryVisited);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!UserProfileExists(userProfile.Id))
+                    if (!CountryVisitedExists(countryVisited.Id))
                     {
                         return NotFound();
                     }
@@ -122,10 +113,10 @@ namespace Xxplore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(userProfile);
+            return View(countryVisited);
         }
 
-        // GET: UserProfiles/Delete/5
+        // GET: CountryVisiteds/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,30 +124,30 @@ namespace Xxplore.Controllers
                 return NotFound();
             }
 
-            var userProfile = await _context.UserProfile
+            var countryVisited = await _context.CountriesVisited
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (userProfile == null)
+            if (countryVisited == null)
             {
                 return NotFound();
             }
 
-            return View(userProfile);
+            return View(countryVisited);
         }
 
-        // POST: UserProfiles/Delete/5
+        // POST: CountryVisiteds/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var userProfile = await _context.UserProfile.FindAsync(id);
-            _context.UserProfile.Remove(userProfile);
+            var countryVisited = await _context.CountriesVisited.FindAsync(id);
+            _context.CountriesVisited.Remove(countryVisited);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UserProfileExists(int id)
+        private bool CountryVisitedExists(int id)
         {
-            return _context.UserProfile.Any(e => e.Id == id);
+            return _context.CountriesVisited.Any(e => e.Id == id);
         }
     }
 }

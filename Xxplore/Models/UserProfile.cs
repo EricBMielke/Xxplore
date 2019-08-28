@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,9 +18,15 @@ namespace Xxplore.Models
         public string FirstName { get; set; }
         [Display(Name = "Last name")]
         public string LastName { get; set; }
-        [Display(Name = "HomeCountry")]
+        [Display(Name = "Home Country")]
         public string HomeCountry { get; set; }
-        [Display(Name = "CountriesVisited")]
+        [Display(Name = "Country 1 to Visit")]
+        public int WishList1 { get; set; }
+        [Display(Name = "Country 2 to Visit")]
+        public int WishList2 { get; set; }
+        [Display(Name = "Country 3 to Visit")]
+        public int WishList3 { get; set; }
+        [Display(Name = "Countries Visited")]
         [NotMapped]
         public string [] CountriesVisited { get; set; }
     }

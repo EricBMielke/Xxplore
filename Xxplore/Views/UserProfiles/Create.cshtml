@@ -1,4 +1,4 @@
-﻿@model Xxplore.Models.UserProfile
+﻿@model Xxplore.ViewModels.WishList
 
 @{
     ViewData["Title"] = "Create";
@@ -13,24 +13,35 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="UserProfile.Email" class="control-label"></label>
+                <input asp-for="UserProfile.Email" class="form-control" />
+                <span asp-validation-for="UserProfile.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="UserProfile.FirstName" class="control-label"></label>
+                <input asp-for="UserProfile.FirstName" class="form-control" />
+                <span asp-validation-for="UserProfile.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <label asp-for="UserProfile.LastName" class="control-label"></label>
+                <input asp-for="UserProfile.LastName" class="form-control" />
+                <span asp-validation-for="UserProfile.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HomeCountry" class="control-label"></label>
-                <input asp-for="HomeCountry" class="form-control" />
-                <span asp-validation-for="HomeCountry" class="text-danger"></span>
+                <label asp-for="UserProfile.HomeCountry" class="control-label"></label>
+                <input asp-for="UserProfile.HomeCountry" class="form-control" />
+                <span asp-validation-for="UserProfile.HomeCountry" class="text-danger"></span>
+            </div>
+
+            <div>
+                <label class="control-label">Wish List Country One</label><br/>
+                @Html.DropDownListFor(m => m.UserProfile.WishList1, Model.WishLists, "First Country to Visit")
+
+                <label class="control-label">Wish List Country Two</label><br/>
+                @Html.DropDownListFor(m => m.UserProfile.WishList2, Model.WishLists, "Second Country to Visit")
+
+                <label class="control-label">Wish List Country Three</label><br/>
+                @Html.DropDownListFor(m => m.UserProfile.WishList3, Model.WishLists, "Third Country to Visit")
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

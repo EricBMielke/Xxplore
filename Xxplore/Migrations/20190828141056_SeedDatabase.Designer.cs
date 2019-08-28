@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xxplore.Data;
 
-namespace Xxplore.Data.Migrations
+namespace Xxplore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190827191648_Second")]
-    partial class Second
+    [Migration("20190828141056_SeedDatabase")]
+    partial class SeedDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -193,6 +193,8 @@ namespace Xxplore.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Code");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
@@ -215,6 +217,12 @@ namespace Xxplore.Data.Migrations
                     b.Property<double>("RatingOfTrip");
 
                     b.Property<DateTime>("StartOfTrip");
+
+                    b.Property<int?>("UserId");
+
+                    b.Property<bool>("hasVisited");
+
+                    b.Property<bool>("hasntVisited");
 
                     b.HasKey("Id");
 
@@ -249,6 +257,12 @@ namespace Xxplore.Data.Migrations
                     b.Property<string>("HomeCountry");
 
                     b.Property<string>("LastName");
+
+                    b.Property<int>("WishList1");
+
+                    b.Property<int>("WishList2");
+
+                    b.Property<int>("WishList3");
 
                     b.HasKey("Id");
 

@@ -10,6 +10,8 @@ namespace Xxplore.Models
     {
         [Key]
         public int Id { get; set; }
+        [Display(Name = "Country Code")]
+        public string Code { get; set; }
         [Display(Name = "Name")]
         public string Name { get; set; }
     }
