@@ -21,7 +21,7 @@ namespace Xxplore.Controllers
         public async Task<IActionResult> WishList(int? id)
         {
             var userFound = await _context.UserProfile.FirstOrDefaultAsync(m => m.Id == id);
-            return View(userFound);
+            return View();
         }
 
         // GET: CountryVisiteds
