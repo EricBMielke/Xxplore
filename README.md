@@ -1,4 +1,4 @@
-# Xplore
+# Xxplore
 Individual Capstone
 
 Need a place to store all the pictures, comments, highlights and dates of all of your trips? Look no more.  This application not only serves as the perfect travel log, but it allows the user to continue looking forward and dreaming about what they want to do.  A built in "wishlist" component allows the user to add countries that are on the top of their want-to-visit list.  A matching algorithm is utilized to look at these longed-after countries and connect the user with someone who is actually from that country and has similar travel interests as them.  The connection is made and the ability to chat with that matched user is instantly at your fingertips.  Let your travel log grow as the more of this wonderful Earth you begin to know!
