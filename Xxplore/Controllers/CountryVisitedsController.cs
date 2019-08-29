@@ -24,6 +24,12 @@ namespace Xxplore.Controllers
             return View();
         }
 
+        public async Task<IActionResult> VisitedAndHasntVisited(int? id)
+        {
+            var userFound = await _context.UserProfile.FirstOrDefaultAsync(m => m.Id == id);
+            return View();
+        }
+
         // GET: CountryVisiteds
         public async Task<IActionResult> Index()
         {
