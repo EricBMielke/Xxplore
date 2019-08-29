@@ -18,10 +18,11 @@ namespace Xxplore.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> WishList(int? id)
+        public async Task<IActionResult> WishList(CountryVisited country)
         {
-            var userFound = await _context.UserProfile.FirstOrDefaultAsync(m => m.Id == id);
-            return View();
+            UserProfile userProfile;
+            userProfile = _context.UserProfile.Where(m => m.Id == country.UserId).Single();
+            return View(userProfile);
         }
 
         public async Task<IActionResult> VisitedAndHasntVisited(int? id)

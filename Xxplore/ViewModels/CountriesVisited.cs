@@ -14,13 +14,6 @@ namespace Xxplore.ViewModels
         public UserProfile UserProfile { get; set; }
         public Country Country { get; set; }
         public SelectList WishLists { get; set; }
-        public CountriesVisited(ApplicationDbContext context)
-        {
-            _context = context;
-
-            List<Country> countryList = _context.Countries.Select(c => c).ToList();
-            WishLists = new SelectList(countryList, "Id", "Name");
-        }
 
     }
 }

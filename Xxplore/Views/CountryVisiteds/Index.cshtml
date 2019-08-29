@@ -4,11 +4,9 @@
     ViewData["Title"] = "Trip Log";
 }
 
-
 <p>
     <center>
-        <font-size: 25px;>
-        <a asp-action="WishList">WishList</a><br /><a asp-action="VisitedAndHasntVisited">Countries Not Visited</a>
+        <a asp-action="WishList" asp-route-id=@Model>WishList</a><br /><a asp-action="VisitedAndHasntVisited">Countries Not Visited</a>
         </font-size:>
 </p></center>
 <center><h2>Where I've Been</h2></center>
