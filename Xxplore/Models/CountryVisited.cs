@@ -13,8 +13,7 @@ namespace Xxplore.Models
         public int Id { get; set; }
         [Display(Name = "CountryId")]
         [ForeignKey("CountryId")]
-        public int? CountryId { get; set; }
-        [NotMapped]
+        public int CountryId { get; set; }
         [Display(Name = "Country Name")]
         public string CountryName { get; set; }
         [Display(Name = "UserId")]

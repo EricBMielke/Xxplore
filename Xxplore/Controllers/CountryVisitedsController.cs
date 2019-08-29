@@ -65,10 +65,17 @@ namespace Xxplore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited,hasntVisited")] CountryVisited countryVisited)
+        public async Task<IActionResult> Create([Bind("Id,CountryName,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited")] CountryVisited countryVisited)
         {
             if (ModelState.IsValid)
             {
+                var userCurrentUser = User.Identity.Name;
+                UserProfile selectedUser;
+                selectedUser = _context.UserProfile.Where(p => p.Email == User.Identity.Name).Single();
+                var countryFound = await _context.Countries
+                .FirstOrDefaultAsync(m => m.Name == countryVisited.CountryName);
+                countryVisited.CountryId = countryFound.Id;
+                countryVisited.UserId = selectedUser.Id;
                 _context.Add(countryVisited);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

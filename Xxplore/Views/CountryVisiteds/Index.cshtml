@@ -4,17 +4,15 @@
     ViewData["Title"] = "Trip Log";
 }
 
-<h2>Where I've Been</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
-</p>
-<p>
-    <a asp-action="WishList">View My WishList</a>
-</p>
-<p>
-    <a asp-action="VisitedAndHasntVisited">View Countries Not Visited</a>
-</p>
+    <center>
+        <font-size: 25px;>
+        <a asp-action="WishList">WishList</a><br /><a asp-action="VisitedAndHasntVisited">Countries Not Visited</a>
+        </font-size:>
+</p></center>
+<center><h2>Where I've Been</h2></center>
+
 <table class="table">
     <thead>
         <tr>
@@ -37,29 +35,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HighlightOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RatingOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndOfTrip)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HighlightOfTrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RatingOfTrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartOfTrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndOfTrip)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<p>
+    <center><a asp-action="Create">Create New</a></center>
+</p>
