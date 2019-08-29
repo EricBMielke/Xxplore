@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -20,8 +22,10 @@ namespace Xxplore.Controllers
         }
         public async Task<IActionResult> WishList(int? id)
         {
-            var userFound = await _context.UserProfile.FirstOrDefaultAsync(m => m.Id == id);
-            return View();
+            var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = _context.Users.Where(p => p.Id == user).Single();
+            var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
+            return View(userFound);
         }
 
         public async Task<IActionResult> VisitedAndHasntVisited(int? id)
@@ -166,6 +170,12 @@ namespace Xxplore.Controllers
         private bool CountryVisitedExists(int id)
         {
             return _context.CountriesVisited.Any(e => e.Id == id);
+        }
+        public string ConvertToCountryName(int id)
+        {
+            Country selectedCountry = _context.Countries.Where(p => p.Id == id).Single();
+            string countryName = selectedCountry.Name;
+            return countryName;
         }
     }
 }

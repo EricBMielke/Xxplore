@@ -66,6 +66,12 @@ namespace Xxplore.Controllers
         {
             if (ModelState.IsValid)
             {
+                Country countryOne = _context.Countries.Where(c => c.Id == userProfile.WishList1).Single();
+                userProfile.WishList1Name = countryOne.Name;
+                Country countryTwo = _context.Countries.Where(c => c.Id == userProfile.WishList2).Single();
+                userProfile.WishList2Name = countryTwo.Name;
+                Country countryThree = _context.Countries.Where(c => c.Id == userProfile.WishList3).Single();
+                userProfile.WishList3Name = countryThree.Name;
                 _context.Add(userProfile);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index","CountryVisiteds");

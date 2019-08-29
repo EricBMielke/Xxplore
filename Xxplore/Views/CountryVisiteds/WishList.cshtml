@@ -4,10 +4,9 @@
     ViewData["Title"] = "WishList";
 }
 
-<h2>WishList</h2>
+<h2>Your Wish List</h2>
 
 <div>
-    <h4>@Html.DisplayNameFor(model => model.FirstName)'s Wish List</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -23,26 +22,15 @@
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.WishList1)
+            @Html.DisplayNameFor(model => model.WishList1Name) @Html.DisplayFor(model => model.WishList1Name)<a asp-action="Connect"> Connect</a>
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.WishList1)
-        </dd>
-        <a asp-action="Connect">Connect</a>
         <dt>
-            @Html.DisplayNameFor(model => model.WishList2)
+            @Html.DisplayNameFor(model => model.WishList2Name) @Html.DisplayFor(model => model.WishList2Name) <a asp-action="Connect"> Connect</a>
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.WishList2)
-        </dd>
-        <a asp-action="Connect" >Connect</a>
-        <dt>
-            @Html.DisplayNameFor(model => model.WishList3)
+        <dt> 
+            @Html.DisplayNameFor(model => model.WishList3Name) @Html.DisplayFor(model => model.WishList3Name) <a asp-action="Connect"> Connect</a>
         </dt>
-        <dd>
-            @Html.DisplayFor(model => model.WishList3)
-        </dd>
-        <a asp-action="Connect">Connect</a>
+
     </dl>
 </div>
 <div>

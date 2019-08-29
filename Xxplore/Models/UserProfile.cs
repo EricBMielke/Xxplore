@@ -26,6 +26,12 @@ namespace Xxplore.Models
         public int WishList2 { get; set; }
         [Display(Name = "Country 3 to Visit")]
         public int WishList3 { get; set; }
+        [Display(Name = "Country to Visit 1")]
+        public string WishList1Name { get; set; }
+        [Display(Name = "Country to Visit 2")]
+        public string WishList2Name { get; set; }
+        [Display(Name = "Country to Visit 3")]
+        public string WishList3Name { get; set; }
         [Display(Name = "Countries Visited")]
         [NotMapped]
         public string [] CountriesVisited { get; set; }
