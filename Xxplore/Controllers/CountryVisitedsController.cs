@@ -46,10 +46,19 @@ namespace Xxplore.Controllers
         // GET: CountryVisiteds
         public async Task<IActionResult> Index()
         {
-            var countriesVisited = await _context.CountriesVisited.ToListAsync();
+            var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = _context.Users.Where(p => p.Id == user).Single();
+            var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
+            var countriesVisited = await _context.CountriesVisited.Where(c => c.UserId == userFound.Id).ToListAsync();
+            //var countriesVisited = await _context.CountriesVisited.ToListAsync();
             var dreamList = GetDreamsToChase();
             CountryVisitedAndCountry newView = new CountryVisitedAndCountry(dreamList, countriesVisited);
             return View(newView);
+        }
+        public async Task<IActionResult> GetHighlights(int? id)
+        {
+            var countryFound = await _context.CountriesVisited.Where(c => c.CountryId == id).ToListAsync();
+            return View(countryFound);
         }
 
         // GET: CountryVisiteds/Details/5

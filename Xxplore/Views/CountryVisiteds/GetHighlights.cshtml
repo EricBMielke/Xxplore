@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Xxplore.Models.CountryVisited>
+
+    <h2> Highlights </h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HighlightOfTrip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingOfTrip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartOfTrip)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndOfTrip)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighlightOfTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingOfTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartOfTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndOfTrip)
+            </td>
+        </tr>
+}
+    </tbody>
+
+</table>
+<a asp-action="Index">Back to List</a>
