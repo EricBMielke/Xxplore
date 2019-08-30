@@ -4,13 +4,6 @@
     ViewData["Title"] = "Trip Log";
 }
 
-
-<p>
-    <center>
-        <font-size: 25px;>
-            <a asp-action="WishList">WishList</a><br />
-        </font-size:>
-</p></center>
 <center><h2>Where I've Been</h2></center>
 
 <table class="table">
@@ -40,40 +33,44 @@
     <tbody>
         @foreach (CountryVisited item in Model.CountryVisitedList)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HighlightOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comments)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RatingOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndOfTrip)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="ViewPicture" asp-route-id="@item.Id">Pictures</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HighlightOfTrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RatingOfTrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartOfTrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndOfTrip)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <a asp-action="ViewPicture" asp-route-id="@item.Id">Pictures</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
-<p>
-    <center><a asp-action="Create">Log New Adventure</a></center>
-</p>
 
 <!--<partial name="_DreamsToChase.cshtml" />-->
 
-    @await Html.PartialAsync("_DreamsToChase", Model.CountryList)
+@await Html.PartialAsync("_DreamsToChase", Model.CountryList)
+
+<p>
+    <center>
+        <font-size: 25px;>
+            <a asp-action="WishList">WishList</a> <a asp-action="Create">Log New Adventure</a><br /> <a asp-action="Scoreboard">See my top trips</a><br />
+        </font-size:>
+</p></center>
 

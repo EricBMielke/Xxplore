@@ -22,6 +22,14 @@ namespace Xxplore.Controllers
         {
             _context = context;
         }
+        public async Task<IActionResult> Scoreboard()
+        {
+            var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = _context.Users.Where(p => p.Id == user).Single();
+            var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
+            //Data to get user trips back and then parse which are the top 3
+            return View(userFound);
+        }
         public async Task<IActionResult> WishList()
         {
             var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
