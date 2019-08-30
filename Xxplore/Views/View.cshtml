@@ -1,20 +1,30 @@
 ﻿@model Xxplore.Models.CountryVisited
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "DreamsToChase";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>CountryVisited</h4>
+    <h4>Dreams to Chase</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CountryId)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CountryName)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Comments)
@@ -48,8 +58,6 @@
         </dd>
     </dl>
 </div>
-<partial name="~/Views/CountryVisiteds/_DreamsTochase.cshtml" />
-
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

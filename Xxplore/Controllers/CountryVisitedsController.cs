@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -28,10 +29,16 @@ namespace Xxplore.Controllers
             return View(userFound);
         }
 
-        public async Task<IActionResult> VisitedAndHasntVisited(int? id)
+        public async Task<IActionResult> DreamsToChase(int? id)
         {
-            var userFound = await _context.UserProfile.FirstOrDefaultAsync(m => m.Id == id);
-            return View();
+            //find user
+            var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = _context.Users.Where(p => p.Id == user).Single();
+            var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
+            //find countries visited of user
+            var userCountryVisits = _context.CountriesVisited.Where(p => p.UserId == userFound.Id).Select(cv => cv.CountryId).ToArray();
+            var notVisitedCountries = _context.Countries.Where(c => !userCountryVisits.Contains(c.Id));
+            return View(notVisitedCountries.ToList());
         }
 
         // GET: CountryVisiteds
