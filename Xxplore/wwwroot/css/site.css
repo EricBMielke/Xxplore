@@ -15,6 +15,9 @@
     width: 0 !important
 }
 
+.wishList {
+    font-size: 30px;
+}
 .partialViewWrapper {
     height: 400px;
     width: 1150px;

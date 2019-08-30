@@ -4,36 +4,27 @@
     ViewData["Title"] = "WishList";
 }
 
-<h2>Your Wish List</h2>
+<center><h2> @Html.DisplayFor(model => model.FirstName)'s Wish List</h2></center>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.WishList1Name) @Html.DisplayFor(model => model.WishList1Name)<a asp-action="Connect"> Connect</a>
-        </dt>
-        <dt>
-            @Html.DisplayNameFor(model => model.WishList2Name) @Html.DisplayFor(model => model.WishList2Name) <a asp-action="Connect"> Connect</a>
-        </dt>
-        <dt> 
-            @Html.DisplayNameFor(model => model.WishList3Name) @Html.DisplayFor(model => model.WishList3Name) <a asp-action="Connect"> Connect</a>
-        </dt>
+<div class="wishList">
+    <center>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                #1: @Html.DisplayFor(model => model.WishList1Name)<a asp-action="Connect"> Connect</a>
+            </dt>
+            <dt>
+                #2: @Html.DisplayFor(model => model.WishList2Name) <a asp-action="Connect"> Connect</a>
+            </dt>
+            <dt>
+                #3: @Html.DisplayFor(model => model.WishList3Name) <a asp-action="Connect"> Connect</a>
+            </dt>
+           
 
-    </dl>
-</div>
+        </dl>
+</div></center>
 <div>
+    <center>
     <!--<a asp-action="Edit" asp-route-id="@*Model.Id*@">Edit</a> |-->
     <a asp-action="Index">Back to List</a>
-</div>
+</div></center>

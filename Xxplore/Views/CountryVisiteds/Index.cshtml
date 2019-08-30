@@ -23,6 +23,9 @@
                 @Html.DisplayNameFor(model => model.CountryVisitedList.First().HighlightOfTrip)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.CountryVisitedList.First().Comments)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CountryVisitedList.First().RatingOfTrip)
             </th>
             <th>
@@ -37,28 +40,32 @@
     <tbody>
         @foreach (CountryVisited item in Model.CountryVisitedList)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CountryName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HighlightOfTrip)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RatingOfTrip)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartOfTrip)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndOfTrip)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighlightOfTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RatingOfTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartOfTrip)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndOfTrip)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="ViewPicture" asp-route-id="@item.Id">Pictures</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
