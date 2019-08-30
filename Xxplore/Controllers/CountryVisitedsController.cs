@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Xxplore.Data;
 using Xxplore.Models;
+using Xxplore.ViewModels;
 
 namespace Xxplore.Controllers
 {
@@ -21,7 +22,7 @@ namespace Xxplore.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> WishList(int? id)
+        public async Task<IActionResult> WishList()
         {
             var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var userName = _context.Users.Where(p => p.Id == user).Single();
@@ -29,7 +30,7 @@ namespace Xxplore.Controllers
             return View(userFound);
         }
 
-        public async Task<IActionResult> DreamsToChase(int? id)
+        public async Task<IActionResult> DreamsToChase()
         {
             //find user
             var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -41,10 +42,14 @@ namespace Xxplore.Controllers
             return View(notVisitedCountries.ToList());
         }
 
+
         // GET: CountryVisiteds
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CountriesVisited.ToListAsync());
+            var countriesVisited = await _context.CountriesVisited.ToListAsync();
+            var dreamList = GetDreamsToChase();
+            CountryVisitedAndCountry newView = new CountryVisitedAndCountry(dreamList, countriesVisited);
+            return View(newView);
         }
 
         // GET: CountryVisiteds/Details/5
@@ -63,6 +68,18 @@ namespace Xxplore.Controllers
             }
 
             return View(countryVisited);
+        }
+
+        public List<Country> GetDreamsToChase()
+        {
+            //find user
+            var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = _context.Users.Where(p => p.Id == user).Single();
+            var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
+            //find countries visited of user
+            var userCountryVisits = _context.CountriesVisited.Where(p => p.UserId == userFound.Id).Select(cv => cv.CountryId).ToArray();
+            var notVisitedCountries = _context.Countries.Where(c => !userCountryVisits.Contains(c.Id));
+            return notVisitedCountries.ToList();
         }
 
         // GET: CountryVisiteds/Create

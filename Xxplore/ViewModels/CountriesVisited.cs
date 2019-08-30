@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xxplore.Data;
 using Xxplore.Models;
+using Xxplore.Controllers;
 
 namespace Xxplore.ViewModels
 {
@@ -20,7 +21,10 @@ namespace Xxplore.ViewModels
 
             List<Country> countryList = _context.Countries.Select(c => c).ToList();
             WishLists = new SelectList(countryList, "Id", "Name");
+
+
         }
+
 
     }
 }

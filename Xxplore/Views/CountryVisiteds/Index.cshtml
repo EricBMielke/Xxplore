@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Xxplore.Models.CountryVisited>
+﻿@model Xxplore.ViewModels.CountryVisitedAndCountry
 
 @{
     ViewData["Title"] = "Trip Log";
@@ -8,7 +8,7 @@
 <p>
     <center>
         <font-size: 25px;>
-        <a asp-action="WishList" >WishList</a><br /><a asp-action="DreamsToChase">Countries Not Visited</a>
+            <a asp-action="WishList">WishList</a><br />
         </font-size:>
 </p></center>
 <center><h2>Where I've Been</h2></center>
@@ -17,25 +17,25 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CountryName)
+                @Html.DisplayNameFor(model => model.CountryVisitedList.First().CountryName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HighlightOfTrip)
+                @Html.DisplayNameFor(model => model.CountryVisitedList.First().HighlightOfTrip)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RatingOfTrip)
+                @Html.DisplayNameFor(model => model.CountryVisitedList.First().RatingOfTrip)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartOfTrip)
+                @Html.DisplayNameFor(model => model.CountryVisitedList.First().StartOfTrip)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndOfTrip)
+                @Html.DisplayNameFor(model => model.CountryVisitedList.First().EndOfTrip)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (CountryVisited item in Model.CountryVisitedList)
         {
             <tr>
                 <td>
@@ -63,7 +63,10 @@
     </tbody>
 </table>
 <p>
-    <center><a asp-action="Create">Create New</a></center>
+    <center><a asp-action="Create">Log New Adventure</a></center>
 </p>
 
-<!--<<partial name="_DreamsToChase.cshtml" />-->
+<!--<partial name="_DreamsToChase.cshtml" />-->
+
+    @await Html.PartialAsync("_DreamsToChase", Model.CountryList)
+
