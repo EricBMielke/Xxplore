@@ -1,4 +1,4 @@
-﻿@model Xxplore.Models.CountryVisited
+﻿@model IEnumerable<Xxplore.Models.CountryVisited>
 
 <div>
     <h4>CountryVisited</h4>
@@ -53,8 +53,30 @@
             @Html.DisplayFor(model => model.EndOfTrip)
         </dd>
     </dl>
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@foreach (CountryVisited item in Model.CountryVisited)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HighlightOfTrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingOfTrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartOfTrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndOfTrip)
+        </td>
+        <div>
+            <!--<a asp-action="Edit" asp-route-id="@*Model.Id*@">Edit</a> | -->
+            <a asp-action="Index">Back to List</a>
+        </div>

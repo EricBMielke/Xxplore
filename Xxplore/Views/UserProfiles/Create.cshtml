@@ -32,15 +32,20 @@
                 <input asp-for="UserProfile.HomeCountry" class="form-control" />
                 <span asp-validation-for="UserProfile.HomeCountry" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="UserProfile.NativeLanguage" class="control-label"></label>
+                <input asp-for="UserProfile.NativeLanguage" class="form-control" />
+                <span asp-validation-for="UserProfile.NativeLanguage" class="text-danger"></span>
+            </div>
 
             <div>
-                <label class="control-label">Wish List Country One</label><br/>
+                <label class="control-label">Wish List Country One</label><br />
                 @Html.DropDownListFor(m => m.UserProfile.WishList1, Model.WishLists, "First Country to Visit")
 
-                <label class="control-label">Wish List Country Two</label><br/>
+                <label class="control-label">Wish List Country Two</label><br />
                 @Html.DropDownListFor(m => m.UserProfile.WishList2, Model.WishLists, "Second Country to Visit")
 
-                <label class="control-label">Wish List Country Three</label><br/>
+                <label class="control-label">Wish List Country Three</label><br />
                 @Html.DropDownListFor(m => m.UserProfile.WishList3, Model.WishLists, "Third Country to Visit")
             </div>
             <div class="form-group">

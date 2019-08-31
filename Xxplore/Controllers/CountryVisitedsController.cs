@@ -22,13 +22,72 @@ namespace Xxplore.Controllers
         {
             _context = context;
         }
+
         public async Task<IActionResult> Scoreboard()
         {
+            List<double> ratedTrips = new List<double>();
             var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var userName = _context.Users.Where(p => p.Id == user).Single();
             var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
-            //Data to get user trips back and then parse which are the top 3
-            return View(userFound);
+            var countriesFound = _context.CountriesVisited.Where(p => p.UserId == userFound.Id).ToList();
+            foreach (CountryVisited item in countriesFound)
+            {
+
+                ratedTrips.Add(item.RatingOfTrip);
+            }
+            //List<int> lst = ints.OfType<int>().ToList();tuff
+            double[] ratedTripsArray = ratedTrips.ToArray();
+            double[] result = new double[3];
+            for (int i = 0; i < ratedTrips.Count; i++)
+            {
+                if (ratedTrips[i] <= result[0])
+                {
+                    continue;
+                }
+                else
+                {
+                    if (ratedTrips[i] > result[2])
+                    {
+                        for (int l = 0; l < 2; l++)
+                        {
+                            result[l] = result[l + 1];
+                        }
+                        result[2] = ratedTripsArray[i];
+                    }
+                    else
+                    {
+                        int indexLeft = 0;
+                        int indexRight = 2;
+                        int currIndex = 0;
+                        while (indexRight - indexLeft > 1)
+                        {
+                            currIndex = (indexRight + indexLeft) / 2;
+                            if (ratedTripsArray[i] >= result[currIndex])
+                            {
+                                indexLeft = currIndex;
+                            }
+                            else
+                            {
+                                indexRight = currIndex;
+                            }
+
+                        }
+
+                        for (int l = 0; l < currIndex; l++)
+                        {
+                            result[l] = result[l + 1];
+                        }
+                        result[currIndex] = ratedTripsArray[i];
+                    }
+                }
+            }
+            List<CountryVisited> topVisitedCountries = new List<CountryVisited>();
+            for (int i = 0; i < result.Length; i++)
+            {
+                topVisitedCountries = _context.CountriesVisited.Where(c => c.RatingOfTrip == result[i]).Select(c => c).ToList();
+
+            }
+                return View(topVisitedCountries);
         }
         public async Task<IActionResult> WishList()
         {
