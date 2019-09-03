@@ -218,6 +218,8 @@ namespace Xxplore.Migrations
 
                     b.Property<double>("RatingOfTrip");
 
+                    b.Property<string>("StarsOfTrip");
+
                     b.Property<DateTime>("StartOfTrip");
 
                     b.Property<int?>("UserId");

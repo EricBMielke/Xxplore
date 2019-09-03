@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Xxplore.Migrations
 {
-    public partial class SeedDatabase : Migration
+    public partial class ReDo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,14 +68,15 @@ namespace Xxplore.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CountryId = table.Column<int>(nullable: true),
+                    CountryId = table.Column<int>(nullable: false),
+                    CountryName = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: true),
+                    Comments = table.Column<string>(nullable: true),
                     HighlightOfTrip = table.Column<string>(nullable: true),
                     RatingOfTrip = table.Column<double>(nullable: false),
+                    StarsOfTrip = table.Column<string>(nullable: true),
                     StartOfTrip = table.Column<DateTime>(nullable: false),
-                    EndOfTrip = table.Column<DateTime>(nullable: false),
-                    hasVisited = table.Column<bool>(nullable: false),
-                    hasntVisited = table.Column<bool>(nullable: false)
+                    EndOfTrip = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,9 +107,13 @@ namespace Xxplore.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     HomeCountry = table.Column<string>(nullable: true),
+                    NativeLanguage = table.Column<string>(nullable: true),
                     WishList1 = table.Column<int>(nullable: false),
                     WishList2 = table.Column<int>(nullable: false),
-                    WishList3 = table.Column<int>(nullable: false)
+                    WishList3 = table.Column<int>(nullable: false),
+                    WishList1Name = table.Column<string>(nullable: true),
+                    WishList2Name = table.Column<string>(nullable: true),
+                    WishList3Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

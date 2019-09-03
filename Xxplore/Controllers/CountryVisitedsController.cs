@@ -169,7 +169,7 @@ namespace Xxplore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CountryName,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited")] CountryVisited countryVisited)
+        public async Task<IActionResult> Create([Bind("Id,Comments,CountryName,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited")] CountryVisited countryVisited)
         {
             if (ModelState.IsValid)
             {
@@ -180,11 +180,43 @@ namespace Xxplore.Controllers
                 .FirstOrDefaultAsync(m => m.Name == countryVisited.CountryName);
                 countryVisited.CountryId = countryFound.Id;
                 countryVisited.UserId = selectedUser.Id;
+                countryVisited.StarsOfTrip = ratingToStars(countryVisited.RatingOfTrip);
                 _context.Add(countryVisited);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(countryVisited);
+        }
+
+        public string ratingToStars(double rating)
+
+        {
+            string ratingImage = "";
+            if (rating == 0)
+            {
+                ratingImage = "";
+            }
+            else if (rating == 1)
+            {
+                ratingImage = "&#x2606;";
+            }
+            else if (rating == 2)
+            {
+                ratingImage = "&#x2606; &#x2606;";
+            }
+            else if (rating == 3)
+            {
+                ratingImage = "&#x2606; &#x2606; &#x2606;"; 
+            }
+            else if (rating == 4)
+            {
+                ratingImage = "&#x2606; &#x2606; &#x2606; &#x2606;";
+            }
+            else if (rating == 5)
+            {
+                ratingImage = "&#x2606; &#x2606; &#x2606; &#x2606; &#x2606;";
+            }
+            return ratingImage;
         }
 
         // GET: CountryVisiteds/Edit/5

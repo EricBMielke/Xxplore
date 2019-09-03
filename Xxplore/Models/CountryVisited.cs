@@ -25,6 +25,8 @@ namespace Xxplore.Models
         public string HighlightOfTrip { get; set; }
         [Display(Name = "Rating Of Trip")]
         public double RatingOfTrip { get; set; }
+        [Display(Name = "Stars Of Trip")]
+        public string StarsOfTrip { get; set; }
         [Display(Name = "Start Of Trip")]
         public DateTime StartOfTrip { get; set; }
         [Display(Name = "End Of Trip")]

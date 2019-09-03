@@ -11,6 +11,10 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.ratingImage {
+    height: 40px;
+    width: 100px;
+}
 .element::-webkit-scrollbar {
     width: 0 !important
 }

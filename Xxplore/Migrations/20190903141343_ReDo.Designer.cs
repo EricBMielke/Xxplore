@@ -10,8 +10,8 @@ using Xxplore.Data;
 namespace Xxplore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190828141056_SeedDatabase")]
-    partial class SeedDatabase
+    [Migration("20190903141343_ReDo")]
+    partial class ReDo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -208,7 +208,11 @@ namespace Xxplore.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CountryId");
+                    b.Property<string>("Comments");
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<string>("CountryName");
 
                     b.Property<DateTime>("EndOfTrip");
 
@@ -216,13 +220,11 @@ namespace Xxplore.Migrations
 
                     b.Property<double>("RatingOfTrip");
 
+                    b.Property<string>("StarsOfTrip");
+
                     b.Property<DateTime>("StartOfTrip");
 
                     b.Property<int?>("UserId");
-
-                    b.Property<bool>("hasVisited");
-
-                    b.Property<bool>("hasntVisited");
 
                     b.HasKey("Id");
 
@@ -258,11 +260,19 @@ namespace Xxplore.Migrations
 
                     b.Property<string>("LastName");
 
+                    b.Property<string>("NativeLanguage");
+
                     b.Property<int>("WishList1");
+
+                    b.Property<string>("WishList1Name");
 
                     b.Property<int>("WishList2");
 
+                    b.Property<string>("WishList2Name");
+
                     b.Property<int>("WishList3");
+
+                    b.Property<string>("WishList3Name");
 
                     b.HasKey("Id");
 

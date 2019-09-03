@@ -1,62 +1,28 @@
 ﻿@model IEnumerable<Xxplore.Models.CountryVisited>
 
-<div>
-    <h4>CountryVisited</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CountryId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CountryName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CountryName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Comments)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Comments)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.HighlightOfTrip)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.HighlightOfTrip)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RatingOfTrip)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RatingOfTrip)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StartOfTrip)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StartOfTrip)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EndOfTrip)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EndOfTrip)
-        </dd>
-    </dl>
 
-</div>
-@foreach (CountryVisited item in Model.CountryVisited)
-{
+<h4>Top Countries Visited</h4>
+<hr />
+<dl class="dl-horizontal">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Country
+            </th>
+            <th>
+                Highlight of the Trip
+            </th>
+            <th>
+                Comments
+            </th>
+            <th>
+                Trip Rating
+            </th>
+        </tr>
+    </thead>
+    @foreach(CountryVisited item in Model)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CountryName)
@@ -68,15 +34,13 @@
             @Html.DisplayFor(modelItem => item.Comments)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RatingOfTrip)
+            @Html.Raw(item.StarsOfTrip)
+
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartOfTrip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndOfTrip)
-        </td>
+     </tr>   
+    }
+</table>
+
         <div>
-            <!--<a asp-action="Edit" asp-route-id="@*Model.Id*@">Edit</a> | -->
             <a asp-action="Index">Back to List</a>
         </div>
