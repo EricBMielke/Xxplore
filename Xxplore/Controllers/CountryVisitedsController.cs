@@ -309,5 +309,45 @@ namespace Xxplore.Controllers
             string countryName = selectedCountry.Name;
             return countryName;
         }
+
+        public UserProfile ConnectToUser(Country country)
+        {
+            var userCurrentUser = User.Identity.Name;
+            UserProfile currentUser;
+            UserProfile foundUser = null;
+            currentUser = _context.UserProfile.Where(p => p.Email == User.Identity.Name).Single();
+            var allUsers = _context.UserProfile;
+            foreach (UserProfile item in allUsers)
+            {
+                if(currentUser.NativeLanguage == item.NativeLanguage && country.Name == item.HomeCountry)
+                {
+                    var countriesFound = _context.CountriesVisited.Where(p => p.Id == country.Id).ToList();
+                    foreach (CountryVisited c in countriesFound){
+                        if (currentUser.Id == c.UserId) {
+                            var countryId = c.Id;
+                            foreach (CountryVisited cv in countriesFound)
+                            {
+                                if(item.Id == cv.UserId && countryId == cv.Id)
+                                {
+                                    return foundUser;
+                                }
+                            }
+                            foundUser = item;
+                            return foundUser;
+                        }
+                        else
+                        {
+                            foundUser = item;
+                            return foundUser;
+                        }
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return null;
+        }
     }
 }
