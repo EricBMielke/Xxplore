@@ -96,6 +96,13 @@ namespace Xxplore.Controllers
             var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
             return View(userFound);
         }
+        public async Task<IActionResult> Chat()
+        {
+            var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = _context.Users.Where(p => p.Id == user).Single();
+            var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
+            return View("Chat");
+        }
 
         public async Task<IActionResult> DreamsToChase()
         {

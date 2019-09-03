@@ -31,9 +31,8 @@ namespace Xxplore.Models
         public DateTime StartOfTrip { get; set; }
         [Display(Name = "End Of Trip")]
         public DateTime EndOfTrip { get; set; }
-        [Display(Name = "Photos Of Trip")]
-        [NotMapped]
-        public string [] PhotosOfTrip { get; set; }
+        [Display(Name = "Photo Of Trip")]
+        public string PhotoOfTrip { get; set; }
         [NotMapped]
         public bool hasVisited { get; set; }
     }
