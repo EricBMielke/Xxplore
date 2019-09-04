@@ -357,35 +357,27 @@ namespace Xxplore.Controllers
                             {
                                 if (item.Id == cv.UserId && countryId == cv.Id)
                                 {
-                                    foundUser.HasConnection = true;
-                                    _context.Update(foundUser);
-                                    await _context.SaveChangesAsync();
-                                    return;
+                                    foundUser.HasConnection = true;                                 
                                 }
                             }
                             foundUser.HasConnection = true;
-                            _context.Update(foundUser);
-                            await _context.SaveChangesAsync();
-                            return;
                         }
                         else
                         {
                             foundUser.HasConnection = true;
-                            _context.Update(foundUser);
-                            await _context.SaveChangesAsync();
-                            return;
                         }
                     }
-
-                    foundUser.HasConnection = true;
-                    _context.Update(foundUser);
-                    await _context.SaveChangesAsync();
-                    return;
-                }
-                else
-                {
                 }
             }
+            try
+            {
+                _context.Update(foundUser);
+            }
+            catch
+            {
+                return;
+            }
+            await _context.SaveChangesAsync();
             return;
         }
     }
