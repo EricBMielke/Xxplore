@@ -113,11 +113,11 @@ namespace Xxplore.Controllers
             var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
             if (userFound.HasConnection == true)
             {
-                return View("Chat");
+                return RedirectToAction("Chat","CountryVisiteds", userFound.HomeCountryId);
             }
             else
             {
-                return View();
+                return View("WishList");
             }
         }
 

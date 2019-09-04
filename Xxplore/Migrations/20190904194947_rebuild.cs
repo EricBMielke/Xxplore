@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Xxplore.Migrations
 {
-    public partial class ReDo : Migration
+    public partial class rebuild : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -76,7 +76,8 @@ namespace Xxplore.Migrations
                     RatingOfTrip = table.Column<double>(nullable: false),
                     StarsOfTrip = table.Column<string>(nullable: true),
                     StartOfTrip = table.Column<DateTime>(nullable: false),
-                    EndOfTrip = table.Column<DateTime>(nullable: false)
+                    EndOfTrip = table.Column<DateTime>(nullable: false),
+                    PhotoOfTrip = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -107,13 +108,15 @@ namespace Xxplore.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     HomeCountry = table.Column<string>(nullable: true),
+                    HomeCountryId = table.Column<int>(nullable: false),
                     NativeLanguage = table.Column<string>(nullable: true),
                     WishList1 = table.Column<int>(nullable: false),
                     WishList2 = table.Column<int>(nullable: false),
                     WishList3 = table.Column<int>(nullable: false),
                     WishList1Name = table.Column<string>(nullable: true),
                     WishList2Name = table.Column<string>(nullable: true),
-                    WishList3Name = table.Column<string>(nullable: true)
+                    WishList3Name = table.Column<string>(nullable: true),
+                    HasConnection = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

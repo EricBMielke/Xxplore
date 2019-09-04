@@ -10,8 +10,8 @@ using Xxplore.Data;
 namespace Xxplore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190903163504_AddPhotos")]
-    partial class AddPhotos
+    [Migration("20190904194947_rebuild")]
+    partial class rebuild
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -258,7 +258,11 @@ namespace Xxplore.Migrations
 
                     b.Property<string>("FirstName");
 
+                    b.Property<bool>("HasConnection");
+
                     b.Property<string>("HomeCountry");
+
+                    b.Property<int>("HomeCountryId");
 
                     b.Property<string>("LastName");
 

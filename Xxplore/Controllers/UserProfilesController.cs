@@ -62,7 +62,7 @@ namespace Xxplore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,FirstName,LastName,HomeCountry,WishList1,WishList2,WishList3,Comments")] UserProfile userProfile)
+        public async Task<IActionResult> Create([Bind("Id,Email,FirstName,LastName,HomeCountry,WishList1,WishList2,WishList3,Comments,NativeLanguage")] UserProfile userProfile)
         {
             if (ModelState.IsValid)
             {
