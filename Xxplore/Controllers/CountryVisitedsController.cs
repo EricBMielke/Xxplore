@@ -88,7 +88,7 @@ namespace Xxplore.Controllers
             for (int i = 0; i < result.Length; i++)
             {
                 topVisitedCountry = countriesFound.Where(c => c.RatingOfTrip == result[i]).Select(c => c).Single();
-                topVisitedCountries.Append(topVisitedCountry);
+                topVisitedCountries.Add(topVisitedCountry);
             }
                 return View(topVisitedCountries);
         }
