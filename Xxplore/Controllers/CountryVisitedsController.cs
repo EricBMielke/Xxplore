@@ -82,11 +82,13 @@ namespace Xxplore.Controllers
                     }
                 }
             }
+            CountryVisited topVisitedCountry = new CountryVisited();
             List<CountryVisited> topVisitedCountries = new List<CountryVisited>();
+
             for (int i = 0; i < result.Length; i++)
             {
-                topVisitedCountries = _context.CountriesVisited.Where(c => c.RatingOfTrip == result[i]).Select(c => c).ToList();
-
+                topVisitedCountry = countriesFound.Where(c => c.RatingOfTrip == result[i]).Select(c => c).Single();
+                topVisitedCountries.Append(topVisitedCountry);
             }
                 return View(topVisitedCountries);
         }
@@ -97,9 +99,9 @@ namespace Xxplore.Controllers
             var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
             return View(userFound);
         }
-        public async Task<IActionResult> Chat(string country)
+        public async Task<IActionResult> Chat(int? id)
         {
-            Country selectedCountry = _context.Countries.Where(p => p.Name == country).Single();
+            Country selectedCountry = _context.Countries.Where(p => p.Id == id).Single();
             ConnectToUser(selectedCountry);
             return View("Chat");
         }
