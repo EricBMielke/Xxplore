@@ -1,37 +1,26 @@
-﻿@model Xxplore.Models.UserProfile
-
-@{
-    ViewData["Title"] = "WishList";
-}
-
-<center><h2> @Html.DisplayFor(model => model.FirstName)'s Wish List</h2></center>
-
-<div class="wishList">
-    <center>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                #1: @Html.DisplayFor(model => model.WishList1Name) <a asp-action="Chat" asp-route-id="@Model.WishList1">Connect to an expert from this country</a>
-            </dt>
-            <dt>
-                #2: @Html.DisplayFor(model => model.WishList2Name) <a asp-action="Chat" asp-route-id="@Model.WishList2">Connect to an expert from this country</a>
-            </dt>
-            <dt>
-                #3: @Html.DisplayFor(model => model.WishList3Name) <a asp-action="Chat" asp-route-id="@Model.WishList3">Connect to an expert from this country</a>
-            </dt>
+﻿@page
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            User..........<input type="text" id="userInput" />
             <br />
-
-            <dt>
-                <a asp-action="ChatWithOthers">Connect with people who want to chat with me</a> <br />
-
-            </dt>
-
-
-        </dl>
-</div></center>
-<div>
-    <center>If you are redirected to this page, there are currently no users available to connect with</center> <br />
-    <center>
-        <!--<a asp-action="Edit" asp-route-id="@*Model.Id*@">Edit</a> |-->
-        <a asp-action="Index">Back to List</a>
-</div></center>
+            Message...<input type="text" id="messageInput" />
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

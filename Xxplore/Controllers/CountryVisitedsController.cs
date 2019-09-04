@@ -106,7 +106,7 @@ namespace Xxplore.Controllers
             return View("Chat");
         }
 
-        public async Task<IActionResult> ChatWithOthers()
+        public async Task<IActionResult> ChatWithOthers(int? id)
         {
             var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var userName = _context.Users.Where(p => p.Id == user).Single();
@@ -194,7 +194,7 @@ namespace Xxplore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Comments,CountryName,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited")] CountryVisited countryVisited)
+        public async Task<IActionResult> Create([Bind("NativeLanguage,Id,Comments,CountryName,CountryId,UserId,HighlightOfTrip,RatingOfTrip,StartOfTrip,EndOfTrip,hasVisited")] CountryVisited countryVisited)
         {
             if (ModelState.IsValid)
             {
@@ -335,7 +335,7 @@ namespace Xxplore.Controllers
             return countryName;
         }
 
-        public UserProfile ConnectToUser(Country country)
+        public async void ConnectToUser(Country country)
         {
             var userCurrentUser = User.Identity.Name;
             UserProfile currentUser;
@@ -346,36 +346,47 @@ namespace Xxplore.Controllers
             {
                 if(currentUser.NativeLanguage == item.NativeLanguage && country.Name == item.HomeCountry)
                 {
+                    foundUser = item;
                     var countriesFound = _context.CountriesVisited.Where(p => p.Id == country.Id).ToList();
-                    foreach (CountryVisited c in countriesFound){
-                        if (currentUser.Id == c.UserId) {
+                    foreach (CountryVisited c in countriesFound)
+                    {
+                        if (currentUser.Id == c.UserId)
+                        {
                             var countryId = c.Id;
                             foreach (CountryVisited cv in countriesFound)
                             {
-                                if(item.Id == cv.UserId && countryId == cv.Id)
+                                if (item.Id == cv.UserId && countryId == cv.Id)
                                 {
                                     foundUser.HasConnection = true;
-                                    return foundUser;
+                                    _context.Update(foundUser);
+                                    await _context.SaveChangesAsync();
+                                    return;
                                 }
                             }
-                            foundUser = item;
                             foundUser.HasConnection = true;
-                            return foundUser;
+                            _context.Update(foundUser);
+                            await _context.SaveChangesAsync();
+                            return;
                         }
                         else
                         {
-                            foundUser = item;
                             foundUser.HasConnection = true;
-                            return foundUser;
+                            _context.Update(foundUser);
+                            await _context.SaveChangesAsync();
+                            return;
                         }
                     }
+
+                    foundUser.HasConnection = true;
+                    _context.Update(foundUser);
+                    await _context.SaveChangesAsync();
+                    return;
                 }
                 else
                 {
-                    return null;
                 }
             }
-            return null;
+            return;
         }
     }
 }

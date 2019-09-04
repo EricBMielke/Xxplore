@@ -72,6 +72,8 @@ namespace Xxplore.Controllers
                 userProfile.WishList2Name = countryTwo.Name;
                 Country countryThree = _context.Countries.Where(c => c.Id == userProfile.WishList3).Single();
                 userProfile.WishList3Name = countryThree.Name;
+                Country homeCountryId = _context.Countries.Where(c => c.Name == userProfile.HomeCountry).Single();
+                userProfile.HomeCountryId = homeCountryId.Id;
                 userProfile.HasConnection = false;
                 _context.Add(userProfile);
                 await _context.SaveChangesAsync();

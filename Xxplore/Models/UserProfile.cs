@@ -20,6 +20,8 @@ namespace Xxplore.Models
         public string LastName { get; set; }
         [Display(Name = "Home Country")]
         public string HomeCountry { get; set; }
+        [Display(Name = "Home Country ID")]
+        public int HomeCountryId { get; set; }
         [Display(Name = "Native Language")]
         public string NativeLanguage { get; set; }
         [Display(Name = "Country 1 to Visit")]
