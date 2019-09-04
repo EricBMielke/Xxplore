@@ -62,7 +62,7 @@ namespace Xxplore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,FirstName,LastName,HomeCountry,WishList1,WishList2,WishList3")] UserProfile userProfile)
+        public async Task<IActionResult> Create([Bind("Id,Email,FirstName,LastName,HomeCountry,WishList1,WishList2,WishList3,Comments")] UserProfile userProfile)
         {
             if (ModelState.IsValid)
             {
@@ -72,6 +72,7 @@ namespace Xxplore.Controllers
                 userProfile.WishList2Name = countryTwo.Name;
                 Country countryThree = _context.Countries.Where(c => c.Id == userProfile.WishList3).Single();
                 userProfile.WishList3Name = countryThree.Name;
+                userProfile.HasConnection = false;
                 _context.Add(userProfile);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index","CountryVisiteds");

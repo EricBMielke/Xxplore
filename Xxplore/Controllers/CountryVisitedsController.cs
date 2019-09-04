@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Xceed.Wpf.Toolkit;
 using Xxplore.Data;
 using Xxplore.Models;
 using Xxplore.ViewModels;
@@ -96,13 +97,28 @@ namespace Xxplore.Controllers
             var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
             return View(userFound);
         }
-        public async Task<IActionResult> Chat()
+        public async Task<IActionResult> Chat(string country)
+        {
+            Country selectedCountry = _context.Countries.Where(p => p.Name == country).Single();
+            ConnectToUser(selectedCountry);
+            return View("Chat");
+        }
+
+        public async Task<IActionResult> ChatWithOthers()
         {
             var user = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var userName = _context.Users.Where(p => p.Id == user).Single();
             var userFound = _context.UserProfile.Where(p => p.Email == userName.UserName).Single();
-            return View("Chat");
+            if (userFound.HasConnection == true)
+            {
+                return View("Chat");
+            }
+            else
+            {
+                return View();
+            }
         }
+
 
         public async Task<IActionResult> DreamsToChase()
         {
@@ -336,15 +352,18 @@ namespace Xxplore.Controllers
                             {
                                 if(item.Id == cv.UserId && countryId == cv.Id)
                                 {
+                                    foundUser.HasConnection = true;
                                     return foundUser;
                                 }
                             }
                             foundUser = item;
+                            foundUser.HasConnection = true;
                             return foundUser;
                         }
                         else
                         {
                             foundUser = item;
+                            foundUser.HasConnection = true;
                             return foundUser;
                         }
                     }

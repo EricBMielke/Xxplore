@@ -34,7 +34,9 @@ namespace Xxplore.Models
         public string WishList2Name { get; set; }
         [Display(Name = "Country to Visit 3")]
         public string WishList3Name { get; set; }
-        [Display(Name = "Countries Visited")]
+        [Display(Name = "Connected to people")]
+        public bool HasConnection { get; set; }
+        [Display(Name = "Country 1 to Visit")]
         [NotMapped]
         public string [] CountriesVisited { get; set; }
     }
