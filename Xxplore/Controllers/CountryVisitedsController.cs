@@ -18,6 +18,7 @@ namespace Xxplore.Controllers
     public class CountryVisitedsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private object countryVisit;
 
         public CountryVisitedsController(ApplicationDbContext context)
         {
@@ -382,11 +383,27 @@ namespace Xxplore.Controllers
         }
         public async Task<IActionResult> InteractiveMap()
         {
-            var userCurrentUser = User.Identity.Name;
-            UserProfile selectedUser;
-            selectedUser = _context.UserProfile.Where(p => p.Email == User.Identity.Name).Single();
-            var countryFound = await _context.CountriesVisited.Where(c => c.UserId == selectedUser.Id).ToListAsync();
-            return View();
+            var interactiveObject = BuildInteractiveObject().ToList();
+            return View(interactiveObject);
+        }
+        public List<string> BuildInteractiveObject()
+        {
+        List<Country> countriesSeen = new List<Country>();
+        List<string> countriesObject = new List<string>();
+        var userCurrentUser = User.Identity.Name;
+        UserProfile selectedUser;
+        selectedUser = _context.UserProfile.Where(p => p.Email == User.Identity.Name).Single();
+        var countryFound = _context.CountriesVisited.Where(c => c.UserId == selectedUser.Id).ToList();
+        foreach (CountryVisited cv in countryFound)
+        {
+            Country countryFoundCountry = _context.Countries.Where(c => c.Name == cv.CountryName).Single();
+            countriesSeen.Add(countryFoundCountry);
+        }
+        foreach (Country co in countriesSeen)
+        { 
+            countriesObject.Add("'id' : '" + co.Code + "', 'showAsSelected': true");
+        }
+        return countriesObject;
         }
     }
 }
