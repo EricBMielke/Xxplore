@@ -380,5 +380,13 @@ namespace Xxplore.Controllers
             await _context.SaveChangesAsync();
             return;
         }
+        public async Task<IActionResult> InteractiveMap()
+        {
+            var userCurrentUser = User.Identity.Name;
+            UserProfile selectedUser;
+            selectedUser = _context.UserProfile.Where(p => p.Email == User.Identity.Name).Single();
+            var countryFound = await _context.CountriesVisited.Where(c => c.UserId == selectedUser.Id).ToListAsync();
+            return View();
+        }
     }
 }
