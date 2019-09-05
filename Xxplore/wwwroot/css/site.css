@@ -11,6 +11,10 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.tripPhoto {
+    height:150px;
+    width: 150px;
+}
 .ratingImage {
     height: 40px;
     width: 100px;

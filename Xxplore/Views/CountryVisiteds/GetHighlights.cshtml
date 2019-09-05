@@ -11,7 +11,10 @@
                 @Html.DisplayNameFor(model => model.HighlightOfTrip)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RatingOfTrip)
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StarsOfTrip)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartOfTrip)
@@ -32,7 +35,10 @@
                 @Html.DisplayFor(modelItem => item.HighlightOfTrip)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RatingOfTrip)
+                @Html.DisplayFor(modelItem => item.Comments)
+            </td>
+            <td>
+                @Html.Raw(item.StarsOfTrip)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartOfTrip)
