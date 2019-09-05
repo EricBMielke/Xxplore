@@ -31,41 +31,39 @@
     <tbody>
         @foreach (CountryVisited item in Model.CountryVisitedList)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CountryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HighlightOfTrip)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Comments)
-            </td>
-            <td>
-                @Html.Raw(item.StarsOfTrip)
-            </td>
-            <td>
-                <img src="@item.PhotoOfTrip" class="tripPhoto">
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="ViewPicture" asp-route-id="@item.Id">Pictures</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CountryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HighlightOfTrip)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @Html.Raw(item.StarsOfTrip)
+                </td>
+                <td>
+                    <img src="@item.PhotoOfTrip" class="tripPhoto">
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> 
+                    <!--<a asp-action="ViewPicture" asp-route-id="@item.Id">Pictures</a>-->
+                </td>
+            </tr>
         }
     </tbody>
 </table>
-
+<p>
+    <font-size: 25px;>
+        <center><a asp-action="Create">Log New Adventure</a><br/><a asp-action="WishList">WishList</a><br /><a asp-action="Scoreboard">See my top trips</a></center>  
+    </font-size:>
+</p>
 <!--<partial name="_DreamsToChase.cshtml" />-->
 
 @await Html.PartialAsync("_DreamsToChase", Model.CountryList)
 
-<p>
-    <center>
-        <font-size: 25px;>
-            <a asp-action="WishList">WishList</a><br/> <a asp-action="Create">Log New Adventure</a><br /> <a asp-action="Scoreboard">See my top trips</a><br />
-        </font-size:>
-</p></center>
 
